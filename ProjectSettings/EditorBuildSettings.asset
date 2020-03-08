@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start Screen.unity
+    guid: 216b9b0f2bafe4a90b0a209724b9c623
+  - enabled: 1
+    path: Assets/Scenes/Jum-Jump.unity
+    guid: 4b3a62269bdde4d0b8203dd3e52084ea
+  - enabled: 1
+    path: Assets/Scenes/Min-Mine.unity
+    guid: 090060bfdf48a4dbdafdc6983dad363a
+  - enabled: 1
+    path: Assets/Scenes/Thro-Throw.unity
+    guid: 21f600c8179c94753aa409c33a7a6e55
   m_configObjects: {}
