@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-    [SerializeField] float horizontalMovementSpeed = 0.1f;
+    [SerializeField] float horizontalSpeed = 2f;
     [SerializeField] float verticalBounceForce = 300f;
 
     ScoreSystem m_scoreSystem;
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
         //AccelerometerControl();
     }
 
+    // TODO: how to deal with magnitude and how to be fps-independent
     private void AccelerometerControl()
     {
         transform.Translate(Input.acceleration.x, 0, 0);
@@ -34,11 +35,11 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(-horizontalMovementSpeed, 0, 0);
+            transform.Translate(Vector3.left * horizontalSpeed * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(horizontalMovementSpeed, 0, 0);
+            transform.Translate(Vector3.right * horizontalSpeed * Time.deltaTime);
         }
     }
 
@@ -47,7 +48,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Cloud"))
         {
             ResetVerticalVelocity();
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, verticalBounceForce)); // bounce the player
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * verticalBounceForce); // bounce the player
 
             if (m_currentCloud != collision.gameObject)
             {

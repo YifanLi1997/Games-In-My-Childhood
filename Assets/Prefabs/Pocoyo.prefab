@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5d831a5597243b9a5d2a224959a125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 2
+  horizontalSpeed: 3
+  verticalBounceForce: 300
 --- !u!95 &3999599112313646100
 Animator:
   serializedVersion: 3
