@@ -5,35 +5,51 @@ using UnityEngine;
 
 public class CloudGenerator : MonoBehaviour
 {
+    [Header("Prefabs")]
     [SerializeField] GameObject cloudPrefab;
+    [SerializeField] GameObject movingCloudPrefab;
+
+    [Header("Generation Configs")]
     [SerializeField] float generationGap = 4f;
     [SerializeField] float generationPosY = 8f;
 
-    bool isGenerating = true;
-    float gapCount;
+    bool m_isGenerating = true;
+    float m_gapCount;
+    float m_generationSeed;
+    GameObject m_newestCloud;
 
     void Start()
     {
-        gapCount = generationGap;
+        m_gapCount = generationGap;
         GenerateCloud();
     }
 
     private void Update()
     {
-        gapCount -= Time.deltaTime;
+        m_gapCount -= Time.deltaTime;
 
-        if (gapCount <= 0 && isGenerating)
+        if (m_gapCount <= 0 && m_isGenerating)
         {
             GenerateCloud();
-            gapCount = generationGap;
+            m_gapCount = generationGap;
         }
     }
 
     private void GenerateCloud()
     {
+        m_generationSeed = UnityEngine.Random.Range(0f, 1f);
+
         Vector3 generationPos = new Vector3(UnityEngine.Random.Range(-2.7f, 2.7f), generationPosY);
-        GameObject newCloud = Instantiate(
-            cloudPrefab, generationPos, Quaternion.identity) as GameObject;
-        newCloud.transform.parent = gameObject.transform;
+        if (m_generationSeed < 0.2f)
+        {
+            m_newestCloud = Instantiate(
+                movingCloudPrefab, generationPos, Quaternion.identity) as GameObject;
+        }
+        else
+        {
+            m_newestCloud = Instantiate(
+                cloudPrefab, generationPos, Quaternion.identity) as GameObject;
+        }
+        m_newestCloud.transform.parent = gameObject.transform;
     }
 }

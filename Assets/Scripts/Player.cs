@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Cloud"))
         {
             ResetVerticalVelocity();
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * verticalBounceForce); // bounce the player
+            m_rigidbody2D.AddForce(Vector2.up * verticalBounceForce); // bounce the player
 
             if (m_currentCloud != collision.gameObject)
             {
